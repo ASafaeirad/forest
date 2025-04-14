@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+omit_comments() {
+  sed -r "s/#(.*)//g"
+}
+
+cat "$1" | omit_comments | pnpm exec cspell stdin

@@ -1,0 +1,31 @@
+{
+  "name": "forest",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "preview": "vite preview",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "prepare": "husky .configs/husky"
+  },
+  "dependencies": {
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@fullstacksjs/eslint-config": "12.0.0",
+    "@types/react": "19.1.1",
+    "@types/react-dom": "19.1.2",
+    "@vitejs/plugin-react-swc": "3.8.1",
+    "cspell": "8.18.1",
+    "eslint": "9.24.0",
+    "husky": "9.1.7",
+    "lint-staged": "15.5.1",
+    "prettier": "3.5.3",
+    "typescript": "5.8.3",
+    "unocss": "66.1.0-beta.11",
+    "vite": "6.2.6"
+  }
+}
