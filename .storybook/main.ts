@@ -7,6 +7,9 @@ const config: StorybookConfig = {
     '@chromatic-com/storybook',
     '@storybook/experimental-addon-test',
   ],
+  docs: {
+    autodocs: 'tag',
+  },
   framework: {
     name: '@storybook/react-vite',
     options: {},
