@@ -1,14 +1,13 @@
 import { tv } from 'tailwind-variants';
 
 const button = tv({
-  base: 'font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed',
+  base: 'border-none font-medium rounded focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed',
   variants: {
     variant: {
       primary:
-        'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500',
-      secondary: 'bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500',
-      outline:
-        'border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-gray-500',
+        'bg-primary text-white hover:bg-primary-hover focus:ring-primary active:bg-primary-active disabled:bg-primary-disabled',
+      secondary:
+        'bg-neutral-600 text-white hover:bg-neutral-700 focus:ring-neutral-500',
     },
     size: {
       sm: 'px-3 py-1.5 text-sm',
@@ -24,7 +23,7 @@ const button = tv({
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'outline' | 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary';
   size?: 'lg' | 'md' | 'sm';
 }
 

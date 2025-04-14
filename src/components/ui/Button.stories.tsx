@@ -25,10 +25,18 @@ export const Secondary: Story = {
   },
 };
 
-export const Outline: Story = {
+export const Disabled: Story = {
   args: {
-    children: 'Outline Button',
-    variant: 'outline',
+    children: 'Disabled Button',
+    disabled: true,
+  },
+};
+
+export const SecondaryDisabled: Story = {
+  args: {
+    children: 'Disabled Button',
+    disabled: true,
+    variant: 'secondary',
   },
 };
 
@@ -43,12 +51,5 @@ export const Large: Story = {
   args: {
     children: 'Large Button',
     size: 'lg',
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    children: 'Disabled Button',
-    disabled: true,
   },
 };

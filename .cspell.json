@@ -3,5 +3,12 @@
   "version": "0.2",
   "language": "en",
   "ignorePaths": ["node_modules/", "pnpm-lock.yaml", "dist/"],
-  "words": ["autodocs", "fullstacksjs", "unocss", "vitest"]
+  "words": [
+    "autodocs",
+    "fullstacksjs",
+    "oklch",
+    "preflights",
+    "unocss",
+    "vitest"
+  ]
 }
