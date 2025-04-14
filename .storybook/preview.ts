@@ -1,3 +1,4 @@
+import '@unocss/reset/sanitize/sanitize.css';
 import 'virtual:uno.css';
 import type { Preview } from '@storybook/react';
 
