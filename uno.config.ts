@@ -22,6 +22,11 @@ export default defineConfig<PresetMiniTheme>({
   rules: [
     ['h-screen', { height: '100dvh' }],
     [
+      'bg-noise',
+      { 'background': 'url("/noise.png") repeat', 'background-size': '600px' },
+    ],
+
+    [
       'toggle-shadow',
       {
         'box-shadow': [

@@ -3,7 +3,7 @@ import { Toggle } from './design/Toggle/Toggle';
 
 export function App() {
   return (
-    <div className="grid place-content-center h-screen">
+    <div className="relative grid place-content-center overflow-clip bg-[url('/noise.png')] h-screen bg-noise">
       <div className="relative size-90 flex flex-col items-center justify-center gap-5 rounded-full timer-border">
         <output className="text-4xl text-6xl text-fg font-bold font-mono">
           25:00
