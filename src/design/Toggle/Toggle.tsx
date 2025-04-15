@@ -15,8 +15,8 @@ export const Toggle = ({
     >
       <span
         className={cn(
-          'absolute left-0 top-0 size-full rounded-full bg-[hsl(0,0,11%)]',
-          'top-[-8%] left-[.5%] h-[110%] w-[99%] ',
+          'absolute left-0 top-0 size-full rounded-full toggle-gradient-shadow',
+          'top-[-8%] left-[.5%] h-[110%] w-[99%] toggle-clip',
           'toggle-shadow group-data-[state=on]:(toggle-shadow-sm) transition-shadow duration-250',
         )}
       />
@@ -26,14 +26,15 @@ export const Toggle = ({
           'text-fg-inverse bg-interface toggle-shadow-inset',
           'flex items-center gap-2 text-base',
           'will-change-transform transition-transform duration-300 ease-cubic',
-          'group-data-[state=on]:(-translate-y-1 transition-transform duration-100)',
+          'group-data-[state=on]:(-translate-y-1)',
+          'group-active:(-translate-y-0.5)',
         )}
       >
         {children}
         <div
           className={cn(
             'size-3 rounded-full',
-            'bg-toggle-off toggle-gradient-off',
+            'group-data-[state=off]:(toggle-gradient-off bg-toggle-off )',
             'group-data-[state=on]:toggle-gradient-on',
           )}
         ></div>

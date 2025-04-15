@@ -25,7 +25,13 @@ export default defineConfig<PresetMiniTheme>({
       'bg-noise',
       { 'background': 'url("/noise.png") repeat', 'background-size': '600px' },
     ],
-
+    [
+      'toggle-gradient-shadow',
+      {
+        background:
+          'linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 25%, rgba(28, 28, 28) 25%, rgba(28, 28, 28) 100%)',
+      },
+    ],
     [
       'toggle-shadow',
       {
@@ -63,14 +69,14 @@ export default defineConfig<PresetMiniTheme>({
         'background':
           'radial-gradient(at center, rgba(255 131 0) 25%, rgba(255 0 0))',
         'box-shadow':
-          '0 0 20px 4px rgba(255 80 0 / 80%), inset 0 -1px rgb(255 255 255 / 20%), inset 0 1px rgb(28 28 28 / 90%)',
+          '0 0 20px 4px rgba(255 80 0 / 80%), inset 0 1px rgb(28 28 28 / 30%)',
       },
     ],
     [
       'toggle-gradient-off',
       {
         'box-shadow':
-          'inset 0 -1px rgb(255 255 255 / 20%), inset 0 1px rgb(28 28 28)',
+          '0 1px 1px rgb(255 255 255 / 10%), inset 0 1px rgb(0 0 0 / 40%)',
       },
     ],
     [
@@ -83,8 +89,8 @@ export default defineConfig<PresetMiniTheme>({
   theme: {
     colors: {
       interface: '#373132',
-      bg: '#BFC2AF',
-      marker: '#AB4640',
+      bg: '#eec1a3', //'#BFC2AF',
+      marker: '#FF4640',
       fg: {
         DEFAULT: 'rgb(0 0 0 / 70%)',
         inverse: '#FFFFFF',
