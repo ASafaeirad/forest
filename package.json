@@ -13,9 +13,9 @@
     "prepare": "husky .configs/husky"
   },
   "dependencies": {
-    "@base-ui-components/react": "1.0.0-alpha.7",
     "@unocss/reset": "66.1.0-beta.11",
     "clsx": "2.1.1",
+    "radix-ui": "1.2.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "tailwind-merge": "3.2.0",
@@ -32,8 +32,6 @@
     "@types/react": "19.1.1",
     "@types/react-dom": "19.1.2",
     "@unocss/eslint-config": "66.1.0-beta.11",
-    "@unocss/preset-mini": "66.1.0-beta.11",
-    "@unocss/preset-web-fonts": "66.1.0-beta.11",
     "@vitejs/plugin-react-swc": "3.8.1",
     "cspell": "8.18.1",
     "eslint": "9.24.0",

@@ -31,7 +31,7 @@ The goal is to help you maintain a big picture as well as the progress of the ta
 - Vitest (Unit test)
 - UnoCSS (Style Solution)
 - PNPM (Package Manager)
-- BaseUI (Headless UI Library)
+- Radix (Headless UI Library)
 - Storybook (Component test, A11y test)
 
 # Lessons
