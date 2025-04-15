@@ -67,12 +67,21 @@ export default defineConfig<PresetMiniTheme>({
           'inset 0 -1px rgb(255 255 255 / 20%), inset 0 1px rgb(28 28 28)',
       },
     ],
+    [
+      'timer-border',
+      {
+        'background-image': `url("data:image/svg+xml,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%20310%20310%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Crect%20x%3D%225%22%20y%3D%225%22%20width%3D%22300%22%20height%3D%22300%22%20rx%3D%22150%22%20stroke%3D%22black%22%20stroke-opacity%3D%220.1%22%0A%20%20%20%20stroke-width%3D%229%22%20stroke-dasharray%3D%223%203%22%20%2F%3E%0A%3C%2Fsvg%3E%0A")`,
+      },
+    ],
   ],
   theme: {
     colors: {
       interface: '#373132',
       bg: '#BFC2AF',
-      fg: '#FFFFFF',
+      fg: {
+        DEFAULT: 'rgb(0 0 0 / 70%)',
+        inverse: '#FFFFFF',
+      },
       toggle: {
         off: 'rgb(0 0 0 / 50%)',
       },
