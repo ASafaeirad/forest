@@ -1,6 +1,6 @@
 import { Toggle as BaseToggle } from 'radix-ui';
 
-import { cn } from '../libs/cn';
+import { cn } from '../../libs/cn';
 
 export const Toggle = ({
   className,
@@ -10,7 +10,7 @@ export const Toggle = ({
   return (
     <BaseToggle.Root
       aria-label="focus"
-      className="group relative cursor-pointer rounded-full border-none bg-transparent p-0 outline-none transition-filter duration-250 focus-within:filter-brighter hover:filter-brighter"
+      className="group relative cursor-pointer select-none rounded-full border-none bg-transparent p-0 outline-none transition-filter duration-250 focus-within:filter-brighter hover:filter-brighter"
       {...props}
     >
       <span
@@ -24,7 +24,7 @@ export const Toggle = ({
         className={cn(
           'pl-5 pr-3 py-3 rounded-full -translate-y-1.5 font-bold',
           'text-fg-inverse bg-interface toggle-shadow-inset',
-          'flex items-center gap-2',
+          'flex items-center gap-2 text-base',
           'will-change-transform transition-transform duration-300 ease-cubic',
           'group-data-[state=on]:(-translate-y-1 transition-transform duration-100)',
         )}

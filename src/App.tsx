@@ -1,4 +1,4 @@
-import { Toggle } from './design/Toggle';
+import { Toggle } from './design/Toggle/Toggle';
 
 export function App() {
   return (
