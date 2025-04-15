@@ -20,6 +20,7 @@ export default defineConfig<PresetMiniTheme>({
   ],
   transformers: [transformerVariantGroup()],
   rules: [
+    ['h-screen', { height: '100dvh' }],
     [
       'toggle-shadow',
       {
@@ -78,6 +79,7 @@ export default defineConfig<PresetMiniTheme>({
     colors: {
       interface: '#373132',
       bg: '#BFC2AF',
+      marker: '#AB4640',
       fg: {
         DEFAULT: 'rgb(0 0 0 / 70%)',
         inverse: '#FFFFFF',
