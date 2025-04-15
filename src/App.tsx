@@ -7,8 +7,7 @@ export function App() {
   preload('/click.wav', { as: 'audio' });
 
   const playSound = () => {
-    const audio = document.createElement('audio');
-    audio.src = '/click.wav';
+    const audio = new Audio('/click.wav');
     audio.play();
   };
 
