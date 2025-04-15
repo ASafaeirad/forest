@@ -14,12 +14,10 @@ export function App() {
 
   return (
     <div className="relative grid place-content-center overflow-clip bg-[url('/noise.png')] h-screen bg-noise">
-      <div className="relative size-90 flex flex-col items-center justify-center gap-5 rounded-full timer-border">
-        <output className="text-4xl text-6xl text-fg font-bold font-mono">
-          25:00
-        </output>
+      <div className="relative size-80 flex flex-col items-center justify-center gap-5 rounded-full timer-border">
+        <output className="text-5xl text-fg font-bold font-mono">25:00</output>
         <Toggle onPressedChange={playSound}>Focus</Toggle>
-        <div className="absolute left-0 color-marker -bottom-5">
+        <div className="absolute color-marker -bottom-12% -left-8%">
           <Arrow />
         </div>
       </div>

@@ -89,8 +89,8 @@ export default defineConfig<PresetMiniTheme>({
   theme: {
     colors: {
       interface: '#373132',
-      bg: '#eec1a3', //'#BFC2AF',
-      marker: '#FF4640',
+      bg: '#BFC2AF',
+      marker: '#AB4640',
       fg: {
         DEFAULT: 'rgb(0 0 0 / 70%)',
         inverse: '#FFFFFF',
