@@ -13,6 +13,7 @@
     "prepare": "husky .configs/husky"
   },
   "dependencies": {
+    "@fullstacksjs/toolbox": "4.16.0",
     "@unocss/reset": "66.1.0-beta.11",
     "clsx": "2.1.1",
     "radix-ui": "1.2.0",
