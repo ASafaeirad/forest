@@ -11,6 +11,7 @@ export const Toggle = ({
     <BaseToggle.Root
       aria-label="focus"
       className="group relative cursor-pointer select-none rounded-full border-none bg-transparent p-0 outline-none transition-filter duration-250 focus-within:filter-brighter hover:filter-brighter"
+      autoFocus
       {...props}
     >
       <span
