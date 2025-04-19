@@ -1,4 +1,4 @@
-import { clamp } from '@fullstacksjs/toolbox';
+import { clamp, isPositive } from '@fullstacksjs/toolbox';
 import { useEffect, useRef, useState } from 'react';
 
 import { cn } from '../../libs/cn';
@@ -96,7 +96,7 @@ export const CircleProgress = ({
         strokeDashoffset={1.7}
         strokeWidth={circleThickness}
       />
-      {value > 0 && (
+      {isPositive(value) && (
         <path
           className="transition-all duration-300"
           d={makeSectorPath(center, r, svgStartAngle, angle)}
@@ -107,6 +107,7 @@ export const CircleProgress = ({
     </svg>
   );
 };
+
 function useAnimatedAngle({
   animation,
   safeValue,
@@ -135,14 +136,14 @@ function useAnimatedAngle({
 
     const start = prevValueRef.current;
     const end = safeValue;
-    const change = end - (start ?? 0);
-    const duration = animationDuration ?? 600;
-    const easeFn = easingMap[animation] ?? easingMap['easeInOutCubic'];
+    const change = end - start;
+    const duration = animationDuration;
+    const easeFn = easingMap[animation];
 
     let startTime: number | null = null;
 
     function animate(ts: number) {
-      if (startTime === null) startTime = ts;
+      startTime ??= ts;
       const elapsed = ts - startTime;
       if (elapsed < duration) {
         setCurrentValue(easeFn(elapsed, start, change, duration));

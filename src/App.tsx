@@ -14,7 +14,7 @@ export function App() {
 
   const toggle = (pressed: boolean) => {
     const audio = new Audio('/click.wav');
-    audio.play();
+    void audio.play();
 
     if (pressed) {
       startCountdown();

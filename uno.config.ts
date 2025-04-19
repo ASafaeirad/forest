@@ -7,6 +7,7 @@ import {
   transformerVariantGroup,
 } from 'unocss';
 
+/* eslint-disable-next-line @typescript-eslint/no-unnecessary-type-arguments */
 export default defineConfig<PresetMiniTheme>({
   presets: [
     presetMini(),
@@ -105,6 +106,7 @@ export default defineConfig<PresetMiniTheme>({
   },
   preflights: [
     {
+      /* eslint-disable @typescript-eslint/restrict-template-expressions */
       getCSS: ({ theme }) => `
         html {
           background-color: ${theme.colors?.bg};
