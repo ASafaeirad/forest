@@ -5,4 +5,7 @@ import Svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
   plugins: [React(), UnoCSS(), Svgr()],
+  build: {
+    target: ['chrome134'],
+  },
 });
