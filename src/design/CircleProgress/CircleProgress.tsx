@@ -64,7 +64,7 @@ export const CircleProgress = ({
 }: CircleProgressProps) => {
   const safeValue = clamp(value, min, max);
 
-  const circleThickness = 6;
+  const circleThickness = 3;
   const center = size / 2;
   const r = center - circleThickness / 2;
   const svgStartAngle = startAngle - 90;
@@ -91,8 +91,8 @@ export const CircleProgress = ({
         cx={size / 2}
         cy={size / 2}
         r={r}
-        stroke="rgb(0 0 0 / 0.2)"
-        strokeDasharray="0.3 2"
+        stroke="rgb(0 0 0 / 0.1)"
+        strokeDasharray=".8 1"
         strokeDashoffset={1.7}
         strokeWidth={circleThickness}
       />

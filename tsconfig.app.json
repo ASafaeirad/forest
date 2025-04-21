@@ -22,7 +22,7 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
 
-    "types": ["vite/client", "vite-plugin-svgr/client"]
+    "types": ["vite/client", "vite-plugin-svgr/client", "react/experimental"]
   },
   "include": ["src"]
 }

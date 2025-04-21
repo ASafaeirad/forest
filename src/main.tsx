@@ -1,3 +1,5 @@
+import './global.css';
+
 import '@unocss/reset/sanitize/sanitize.css';
 import 'virtual:uno.css';
 import { StrictMode } from 'react';

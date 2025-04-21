@@ -2,6 +2,7 @@ import type { PresetMiniTheme } from 'unocss';
 
 import {
   defineConfig,
+  presetIcons,
   presetMini,
   presetWebFonts,
   transformerVariantGroup,
@@ -11,17 +12,19 @@ import {
 export default defineConfig<PresetMiniTheme>({
   presets: [
     presetMini(),
+    presetIcons(),
     presetWebFonts({
       provider: 'google',
       fonts: {
         sans: ['Inter:400,700'],
-        mono: ['Space Mono:400,700'],
+        mono: ['Space Mono:400,600'],
       },
     }),
   ],
   transformers: [transformerVariantGroup()],
   rules: [
     ['h-screen', { height: '100dvh' }],
+    ['field-sizing-content', { 'field-sizing': 'content' }],
     [
       'bg-noise',
       { 'background': 'url("/noise.png") repeat', 'background-size': '600px' },
@@ -31,29 +34,6 @@ export default defineConfig<PresetMiniTheme>({
       {
         background:
           'linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 25%, rgba(28, 28, 28) 25%, rgba(28, 28, 28) 100%)',
-      },
-    ],
-    [
-      'toggle-shadow',
-      {
-        'box-shadow': [
-          '0 20px 40px 5px rgb(0 0 0 / 15%)',
-          '0 15px 20px rgb(0 0 0 / 25%)',
-          '0 10px 15px rgb(0 0 0 / 25%)',
-          '0 5px 5px rgb(0 0 0 / 30%)',
-          '0 2px 2px rgb(0 0 0 / 30%)',
-        ].join(','),
-      },
-    ],
-    [
-      'toggle-shadow-sm',
-      {
-        'box-shadow': [
-          '0 15px 20px 4px rgb(0 0 0 / 15%)',
-          '0 10px 15px rgb(0 0 0 / 25%)',
-          '0 5px 5px rgb(0 0 0 / 30%)',
-          '0 2px 2px rgb(0 0 0 / 30%)',
-        ].join(','),
       },
     ],
     [
@@ -88,10 +68,30 @@ export default defineConfig<PresetMiniTheme>({
     ],
   ],
   theme: {
+    boxShadow: {
+      'kbd': '0px 4px rgb(0 0 0 / 20%)',
+      'toggle-off': [
+        '0 15px 20px 4px rgb(0 0 0 / 15%)',
+        '0 10px 15px rgb(0 0 0 / 25%)',
+        '0 5px 5px rgb(0 0 0 / 30%)',
+        '0 2px 2px rgb(0 0 0 / 30%)',
+      ].join(','),
+      'toggle-on': [
+        '0 20px 40px 5px rgb(0 0 0 / 15%)',
+        '0 15px 20px rgb(0 0 0 / 25%)',
+        '0 10px 15px rgb(0 0 0 / 25%)',
+        '0 5px 5px rgb(0 0 0 / 30%)',
+        '0 2px 2px rgb(0 0 0 / 30%)',
+      ].join(','),
+    },
     colors: {
       interface: '#373132',
       bg: '#BFC2AF',
       marker: '#AB4640',
+      shade: {
+        DEFAULT: 'rgb(0 0 0 / 5%)',
+        1: 'rgb(0 0 0 / 10%)',
+      },
       fg: {
         DEFAULT: 'rgb(0 0 0 / 70%)',
         inverse: '#FFFFFF',

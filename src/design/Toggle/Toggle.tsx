@@ -18,7 +18,7 @@ export const Toggle = ({
         className={cn(
           'absolute left-0 top-0 size-full rounded-full toggle-gradient-shadow',
           'top-[-8%] left-[.5%] h-[110%] w-[99%] toggle-clip',
-          'toggle-shadow group-data-[state=on]:(toggle-shadow-sm) transition-shadow duration-250',
+          'shadow-toggle-on group-data-[state=on]:shadow-toggle-off transition-shadow duration-250',
         )}
       />
       <div
