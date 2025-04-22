@@ -57,7 +57,7 @@ export const CircleProgress = ({
   min = 0,
   max = 1,
   startAngle = 0,
-  animation = 'none',
+  animation = 'easeInOutCubic',
   animationDuration = 600,
   className,
 }: CircleProgressProps) => {
@@ -97,7 +97,6 @@ export const CircleProgress = ({
       />
       {isPositive(value) && (
         <path
-          className="transition-all duration-300"
           d={makeSectorPath(center, r, svgStartAngle, angle)}
           stroke="currentColor"
           strokeWidth={circleThickness}

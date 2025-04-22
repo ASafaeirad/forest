@@ -1,68 +1,79 @@
-import { useCallback, useState } from 'react';
-
-import { useInterval } from './useInterval';
-import { useToggle } from './useToggle';
+import { isNull } from '@fullstacksjs/toolbox';
+import {
+  experimental_useEffectEvent as useEffectEvent,
+  useRef,
+  useState,
+} from 'react';
 
 interface CountdownOptions {
-  countStart: number;
-
-  intervalMs?: number;
-  isIncrement?: boolean;
-
-  countStop?: number;
+  interval?: number;
+  onComplete?: VoidFunction;
+  onTick?: VoidFunction;
+  onPause?: VoidFunction;
+  onResume?: VoidFunction;
 }
 
-interface CountdownControllers {
-  startCountdown: () => void;
-  stopCountdown: () => void;
-  resetCountdown: () => void;
-}
+export function useCountdown(
+  endTime: number,
+  { interval = 1000, onComplete, onTick, onPause, onResume }: CountdownOptions,
+) {
+  const [count, setCount] = useState<number>(endTime);
+  const [isRunning, setIsRunning] = useState(false);
+  const intervalIdRef = useRef<number>(null);
+  const isCompletedRef = useRef(false);
 
-export function useCountdown({
-  countStart,
-  countStop = 0,
-  intervalMs = 1000,
-  isIncrement = false,
-}: CountdownOptions): [number, CountdownControllers] {
-  const [count, setCount] = useState(countStart);
-
-  const increment = useCallback(() => {
-    setCount(x => x + 1);
-  }, []);
-
-  const decrement = useCallback(() => {
-    setCount(x => x - 1);
-  }, []);
-
-  const reset = useCallback(() => {
-    setCount(countStart);
-  }, [countStart]);
-
-  const {
-    value: isCountdownRunning,
-    setTrue: startCountdown,
-    setFalse: stopCountdown,
-  } = useToggle(false);
-
-  const resetCountdown = useCallback(() => {
-    stopCountdown();
-    reset();
-  }, [stopCountdown, reset]);
-
-  const countdownCallback = useCallback(() => {
-    if (count === countStop) {
-      stopCountdown();
-      return;
+  const clearInterval = () => {
+    if (intervalIdRef.current) {
+      window.clearInterval(intervalIdRef.current);
+      intervalIdRef.current = null;
     }
+  };
 
-    if (isIncrement) {
-      increment();
+  const stop = useEffectEvent(() => {
+    setIsRunning(false);
+    clearInterval();
+  });
+
+  const handleTick = useEffectEvent(() => {
+    if (isNull(count)) return;
+    const isFinished = count === 0;
+
+    if (isFinished) {
+      stop();
+      if (!isCompletedRef.current) {
+        isCompletedRef.current = true;
+        onComplete?.();
+      }
     } else {
-      decrement();
+      setCount(c => c - 1);
+      onTick?.();
     }
-  }, [count, countStop, decrement, increment, isIncrement, stopCountdown]);
+  });
 
-  useInterval(countdownCallback, isCountdownRunning ? intervalMs : null);
+  const start = useEffectEvent(() => {
+    if (isRunning && count === 0) return;
 
-  return [count, { startCountdown, stopCountdown, resetCountdown }];
+    setIsRunning(true);
+    intervalIdRef.current = window.setInterval(handleTick, interval);
+    onResume?.();
+  });
+
+  const pause = useEffectEvent(() => {
+    stop();
+    onPause?.();
+  });
+
+  const reset = useEffectEvent(() => {
+    setCount(endTime);
+    stop();
+    isCompletedRef.current = false;
+  });
+
+  return {
+    count,
+    isRunning,
+    start,
+    pause,
+    reset,
+  };
 }

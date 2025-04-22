@@ -11,24 +11,40 @@ import Arrow from './design/Arrow/Arrow.svg?react';
 import { CircleProgress } from './design/CircleProgress/CircleProgress';
 import { Toggle } from './design/Toggle/Toggle';
 
-const noise = createSound({ src: '/noise.mp3' });
+const noise = createSound({ src: '/noise.mp3', loop: true });
 
-export function Timer({ seconds }: { seconds: number }) {
-  const [count, { startCountdown, stopCountdown }] = useCountdown({
-    countStart: seconds,
-  });
+interface Props {
+  seconds: number;
+  onComplete?: () => void;
+}
+
+export function Timer({ seconds, onComplete }: Props) {
   const [hasOpened, setHasOpened] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const { count, start, pause } = useCountdown(seconds, {
+    onPause: () => {
+      noise.pause(0);
+      setIsPlaying(false);
+    },
+    onResume: () => {
+      noise.play();
+      setIsPlaying(true);
+    },
+    onComplete: () => {
+      noise.pause(0);
+      onComplete?.();
+      setIsPlaying(false);
+    },
+  });
 
   const toggleFocus = (pressed: boolean) => {
     if (pressed) {
       startTransition(() => {
         setHasOpened(true);
       });
-      startCountdown();
-      noise.play(1000);
+      start();
     } else {
-      stopCountdown();
-      noise.pause(1000);
+      pause();
     }
   };
 
@@ -37,10 +53,12 @@ export function Timer({ seconds }: { seconds: number }) {
       <Counter count={count} />
       <CircleProgress
         className="absolute size-full color-marker"
-        max={25 * 60}
-        value={25 * 60 - count}
+        max={seconds}
+        value={seconds - count}
       />
-      <Toggle onPressedChange={toggleFocus}>Focus</Toggle>
+      <Toggle pressed={isPlaying} onPressedChange={toggleFocus}>
+        Focus
+      </Toggle>
       {!hasOpened && (
         <ViewTransition>
           <div className="absolute color-marker -bottom-12% -left-8%">
