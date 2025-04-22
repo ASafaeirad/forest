@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
 
+import { TaskBar } from './components/TaskBar';
+import { TaskDialog } from './components/TaskDialog';
+import { Timer } from './components/Timer';
 import { useKeyPress } from './hooks/useKeyPress';
-import { TaskBar } from './TaskBar';
-import { TaskDialog } from './TaskDialog';
-import { Timer } from './Timer';
 
 export function App() {
   const [task, setTask] = useState<string>();

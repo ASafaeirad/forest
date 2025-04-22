@@ -4,12 +4,12 @@ import {
   unstable_ViewTransition as ViewTransition,
 } from 'react';
 
+import { useCountdown } from '../hooks/useCountDown';
+import { createSound } from '../libs/createSound';
 import { Counter } from './Counter';
 import Arrow from './design/Arrow/Arrow.svg?react';
 import { CircleProgress } from './design/CircleProgress/CircleProgress';
 import { Toggle } from './design/Toggle/Toggle';
-import { useCountdown } from './hooks/useCountDown';
-import { createSound } from './libs/createSound';
 
 const noise = createSound({ src: '/noise.mp3' });
 

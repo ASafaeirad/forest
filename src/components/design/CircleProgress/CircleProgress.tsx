@@ -1,7 +1,6 @@
+import { cn } from '@forest/cn';
 import { clamp, isPositive } from '@fullstacksjs/toolbox';
 import { useEffect, useRef, useState } from 'react';
-
-import { cn } from '../../libs/cn';
 
 const size = 100;
 

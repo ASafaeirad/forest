@@ -1,6 +1,5 @@
+import { cn } from '@forest/cn';
 import { formatSeconds } from '@fullstacksjs/toolbox';
-
-import { cn } from './libs/cn';
 
 interface Props {
   count: number;

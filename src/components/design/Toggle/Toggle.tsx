@@ -1,6 +1,5 @@
+import { cn } from '@forest/cn';
 import { Toggle as BaseToggle } from 'radix-ui';
-
-import { cn } from '../../libs/cn';
 
 export const Toggle = ({
   className,

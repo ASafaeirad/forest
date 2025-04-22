@@ -1,4 +1,4 @@
-import { cn } from '../../libs/cn';
+import { cn } from '@forest/cn';
 
 interface Props {
   children: React.ReactNode;
