@@ -1,52 +1,14 @@
-import {
-  startTransition,
-  useState,
-  unstable_ViewTransition as ViewTransition,
-} from 'react';
+import { use, unstable_ViewTransition as ViewTransition } from 'react';
 
-import { useCountdown } from '../hooks/useCountDown';
-import { createSound } from '../libs/createSound';
 import { Counter } from './Counter';
 import Arrow from './design/Arrow/Arrow.svg?react';
 import { CircleProgress } from './design/CircleProgress/CircleProgress';
 import { Toggle } from './design/Toggle/Toggle';
+import { DispatchContext, StoreContext } from './StoreProvider';
 
-const noise = createSound({ src: '/noise.mp3', loop: true });
-
-interface Props {
-  seconds: number;
-  onComplete?: () => void;
-}
-
-export function Timer({ seconds, onComplete }: Props) {
-  const [hasOpened, setHasOpened] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const { count, start, pause } = useCountdown(seconds, {
-    onPause: () => {
-      noise.pause(0);
-      setIsPlaying(false);
-    },
-    onResume: () => {
-      noise.play();
-      setIsPlaying(true);
-    },
-    onComplete: () => {
-      noise.pause(0);
-      onComplete?.();
-      setIsPlaying(false);
-    },
-  });
-
-  const toggleFocus = (pressed: boolean) => {
-    if (pressed) {
-      startTransition(() => {
-        setHasOpened(true);
-      });
-      start();
-    } else {
-      pause();
-    }
-  };
+export function Timer() {
+  const { count, isPlaying, hasOpened, seconds } = use(StoreContext);
+  const { toggleFocus } = use(DispatchContext);
 
   return (
     <div className="relative size-75 flex flex-col items-center justify-center gap-5 rounded-full sm:size-90">
