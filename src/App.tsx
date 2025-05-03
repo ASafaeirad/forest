@@ -19,7 +19,9 @@ export function App() {
 
   const openDialog = useEffectEvent(() => {
     setIsOpen(true);
-    dialogRef.current?.showModal();
+    document.startViewTransition(() => {
+      dialogRef.current?.showModal();
+    });
   });
 
   const closeDialog = useEffectEvent(() => {

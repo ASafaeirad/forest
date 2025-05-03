@@ -23,6 +23,7 @@ export default defineConfig<PresetMiniTheme>({
   ],
   transformers: [transformerVariantGroup()],
   rules: [
+    [/^vt-(.+)$/, ([, name]) => ({ 'view-transition-name': name })],
     ['h-screen', { height: '100dvh' }],
     ['field-sizing-content', { 'field-sizing': 'content' }],
     [

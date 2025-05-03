@@ -10,6 +10,8 @@
     "oklch",
     "preflights",
     "unocss",
-    "vitest"
+    "vitest",
+    "noninteractive",
+    "esbuild"
   ]
 }

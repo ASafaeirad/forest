@@ -1,3 +1,37 @@
 ::backdrop {
   backdrop-filter: blur(7px);
 }
+
+::view-transition-group(dialog) {
+  animation-duration: 300ms;
+}
+
+::view-transition-new(dialog) {
+  animation-name: slide-in;
+}
+
+::view-transition-old(dialog) {
+  animation-name: slide-out;
+}
+
+@keyframes slide-in {
+  from {
+    scale: 0;
+    translate: 0 20vh;
+  }
+  to {
+    scale: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes slide-out {
+  from {
+    scale: 1;
+    translate: 0 0;
+  }
+  to {
+    scale: 0;
+    translate: 0 20vh;
+  }
+}
