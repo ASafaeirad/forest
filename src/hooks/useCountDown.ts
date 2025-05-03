@@ -65,7 +65,7 @@ export function useCountdown(
 
   const reset = useEffectEvent(() => {
     setCount(endTime);
-    stop();
+    pause();
     isCompletedRef.current = false;
   });
 

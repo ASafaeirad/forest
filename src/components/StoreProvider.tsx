@@ -44,7 +44,7 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [seconds, setSeconds] = useState(30 * 60);
 
-  const { count, start, pause } = useCountdown(seconds, {
+  const { count, start, pause, reset } = useCountdown(seconds, {
     onPause: () => {
       noise.pause(0);
       setIsPlaying(false);
@@ -69,10 +69,6 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
     } else {
       pause();
     }
-  });
-
-  const reset = useEffectEvent(() => {
-    setSeconds(30 * 60);
   });
 
   const dispatch = useMemo(
