@@ -18,8 +18,8 @@ export function App() {
   const { reset } = use(DispatchContext);
 
   const openDialog = useEffectEvent(() => {
-    setIsOpen(true);
     document.startViewTransition(() => {
+      setIsOpen(true);
       dialogRef.current?.showModal();
     });
   });

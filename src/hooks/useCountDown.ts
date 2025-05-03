@@ -20,7 +20,6 @@ export function useCountdown(
   const [count, setCount] = useState<number>(endTime);
   const [isRunning, setIsRunning] = useState(false);
   const intervalIdRef = useRef<number>(null);
-  const isCompletedRef = useRef(false);
 
   const clearInterval = () => {
     if (intervalIdRef.current) {
@@ -40,10 +39,7 @@ export function useCountdown(
 
     if (isFinished) {
       stop();
-      if (!isCompletedRef.current) {
-        isCompletedRef.current = true;
-        onComplete?.();
-      }
+      onComplete?.();
     } else {
       setCount(c => c - 1);
       onTick?.();
@@ -66,7 +62,6 @@ export function useCountdown(
   const reset = useEffectEvent(() => {
     setCount(endTime);
     pause();
-    isCompletedRef.current = false;
   });
 
   return {
@@ -75,5 +70,6 @@ export function useCountdown(
     start,
     pause,
     reset,
+    isCompleted: count === 0,
   };
 }

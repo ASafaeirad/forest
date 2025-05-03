@@ -44,7 +44,7 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [seconds, setSeconds] = useState(30 * 60);
 
-  const { count, start, pause, reset } = useCountdown(seconds, {
+  const { count, start, pause, reset, isCompleted } = useCountdown(seconds, {
     onPause: () => {
       noise.pause(0);
       setIsPlaying(false);
@@ -61,11 +61,13 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
   });
 
   const toggleFocus = useEffectEvent((pressed: boolean) => {
+    if (isCompleted) reset();
+
     if (pressed) {
       startTransition(() => {
         setHasOpened(true);
+        start();
       });
-      start();
     } else {
       pause();
     }
