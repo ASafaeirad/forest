@@ -13,7 +13,7 @@ export function createSound({ src, loop }: { src: string; loop?: boolean }) {
   };
 
   const pause = (duration = 1000) => {
-    howler.fade(howler.volume(), 0, duration);
+    howler.fade(howler.volume() || 100, 0, duration);
     timeout = setTimeout(() => {
       if (timeout) howler.pause();
     }, duration);

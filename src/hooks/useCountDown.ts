@@ -1,5 +1,6 @@
 import { isNull } from '@fullstacksjs/toolbox';
 import {
+  useEffect,
   experimental_useEffectEvent as useEffectEvent,
   useRef,
   useState,
@@ -14,12 +15,16 @@ interface CountdownOptions {
 }
 
 export function useCountdown(
-  endTime: number,
+  seconds: number,
   { interval = 1000, onComplete, onTick, onPause, onResume }: CountdownOptions,
 ) {
-  const [count, setCount] = useState<number>(endTime);
+  const [count, setCount] = useState(seconds);
   const [isRunning, setIsRunning] = useState(false);
   const intervalIdRef = useRef<number>(null);
+
+  useEffect(() => {
+    setCount(seconds);
+  }, [seconds]);
 
   const clearInterval = () => {
     if (intervalIdRef.current) {
@@ -60,7 +65,7 @@ export function useCountdown(
   });
 
   const reset = useEffectEvent(() => {
-    setCount(endTime);
+    setCount(seconds);
     pause();
   });
 

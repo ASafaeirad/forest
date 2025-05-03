@@ -15,7 +15,7 @@ export function App() {
   const [task, setTask] = useState<string>();
   const [isOpen, setIsOpen] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const { reset } = use(DispatchContext);
+  const { reset, decrementSeconds, incrementSeconds } = use(DispatchContext);
 
   const openDialog = useEffectEvent(() => {
     document.startViewTransition(() => {
@@ -36,6 +36,16 @@ export function App() {
 
   useKeyPress('r', () => {
     reset();
+  });
+
+  useKeyPress('j', e => {
+    const change = e.altKey ? 60 : 1;
+    decrementSeconds(change);
+  });
+
+  useKeyPress('k', e => {
+    const change = e.altKey ? 60 : 1;
+    incrementSeconds(change);
   });
 
   return (

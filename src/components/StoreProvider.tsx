@@ -19,7 +19,8 @@ interface Store {
 
 interface Dispatch {
   toggleFocus: (pressed: boolean) => void;
-  setSeconds: (seconds: number) => void;
+  decrementSeconds: (change: number) => void;
+  incrementSeconds: (change: number) => void;
   reset: () => void;
 }
 
@@ -32,7 +33,8 @@ export const StoreContext = createContext<Store>({
 
 export const DispatchContext = createContext<Dispatch>({
   toggleFocus: noop,
-  setSeconds: noop,
+  decrementSeconds: noop,
+  incrementSeconds: noop,
   reset: noop,
 });
 
@@ -43,6 +45,16 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
   const [hasOpened, setHasOpened] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [seconds, setSeconds] = useState(30 * 60);
+
+  const decrementSeconds = useEffectEvent((arg: number) => {
+    if (isPlaying) return;
+    setSeconds(s => Math.max(s - arg, 0));
+  });
+
+  const incrementSeconds = useEffectEvent((arg: number) => {
+    if (isPlaying) return;
+    setSeconds(s => s + arg);
+  });
 
   const { count, start, pause, reset, isCompleted } = useCountdown(seconds, {
     onPause: () => {
@@ -74,8 +86,8 @@ export const StoreProvider = ({ children }: { children: React.ReactNode }) => {
   });
 
   const dispatch = useMemo(
-    () => ({ toggleFocus, setSeconds, reset }),
-    [toggleFocus, setSeconds, reset],
+    () => ({ toggleFocus, decrementSeconds, incrementSeconds, reset }),
+    [toggleFocus, decrementSeconds, incrementSeconds, reset],
   );
 
   const store = useMemo(
